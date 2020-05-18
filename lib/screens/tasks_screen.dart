@@ -56,60 +56,49 @@ class TasksScreen extends StatelessWidget {
                 ),
               ),
               child: ListView(
-                padding: EdgeInsets.all(40),
+                padding:
+                    EdgeInsets.only(left: 20, top: 44, right: 20, bottom: 34),
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          "Buy milk",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
+                  ListTile(
+                    title: Text(
+                      "Buy milk",
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
-                      Checkbox(
-                          value: false,
-                          onChanged: (bool value) {
-                            print(value);
-                          }),
-                    ],
+                    ),
+                    trailing: Checkbox(
+                        value: false,
+                        onChanged: (bool value) {
+                          print(value);
+                        }),
                   ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          "Buy eggs",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
+                  ListTile(
+                    title: Text(
+                      "Buy detergent",
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
-                      Checkbox(
-                          value: false,
-                          onChanged: (bool value) {
-                            print(value);
-                          }),
-                    ],
+                    ),
+                    trailing: Checkbox(
+                        value: false,
+                        onChanged: (bool value) {
+                          print(value);
+                        }),
                   ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          "Buy detergent",
-                          style: TextStyle(
-                            fontSize: 20,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
+                  ListTile(
+                    title: Text(
+                      "Buy eggs",
+                      style: TextStyle(
+                        fontSize: 20,
+                        decoration: TextDecoration.lineThrough,
                       ),
-                      Checkbox(
-                          value: true,
-                          onChanged: (bool value) {
-                            print(value);
-                          }),
-                    ],
-                  )
+                    ),
+                    trailing: Checkbox(
+                        value: true,
+                        onChanged: (bool value) {
+                          print(value);
+                        }),
+                  ),
                 ],
               ),
             ),
