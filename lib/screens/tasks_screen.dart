@@ -56,57 +56,49 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      "Buy milk",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    trailing: Checkbox(
-                        value: false,
-                        onChanged: (bool value) {
-                          print(value);
-                        }),
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      "Buy detergent",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    trailing: Checkbox(
-                        value: false,
-                        onChanged: (bool value) {
-                          print(value);
-                        }),
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      "Buy eggs",
-                      style: TextStyle(
-                        fontSize: 20,
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
-                    trailing: Checkbox(
-                        value: true,
-                        onChanged: (bool value) {
-                          print(value);
-                        }),
-                  ),
-                ],
-              ),
+              child: TasksList(),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class TasksList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        TaskTile("Buy milk"),
+        TaskTile("Buy detergent"),
+        TaskTile("Buy bananas", isCompleted: true),
+      ],
+    );
+  }
+}
+
+class TaskTile extends StatelessWidget {
+  final String taskName;
+  final bool isCompleted;
+
+  TaskTile(this.taskName, {this.isCompleted = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        taskName,
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
+      trailing: Checkbox(
+          value: isCompleted,
+          onChanged: (bool value) {
+            print(value);
+          }),
     );
   }
 }
