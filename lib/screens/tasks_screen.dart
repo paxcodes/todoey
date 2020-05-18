@@ -48,6 +48,7 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -56,10 +57,9 @@ class TasksScreen extends StatelessWidget {
                 ),
               ),
               child: ListView(
-                padding:
-                    EdgeInsets.only(left: 20, top: 44, right: 20, bottom: 34),
                 children: <Widget>[
                   ListTile(
+                    contentPadding: EdgeInsets.zero,
                     title: Text(
                       "Buy milk",
                       style: TextStyle(
@@ -73,6 +73,7 @@ class TasksScreen extends StatelessWidget {
                         }),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.zero,
                     title: Text(
                       "Buy detergent",
                       style: TextStyle(
@@ -86,6 +87,7 @@ class TasksScreen extends StatelessWidget {
                         }),
                   ),
                   ListTile(
+                    contentPadding: EdgeInsets.zero,
                     title: Text(
                       "Buy eggs",
                       style: TextStyle(
