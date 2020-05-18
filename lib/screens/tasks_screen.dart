@@ -55,6 +55,63 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
+              child: ListView(
+                padding: EdgeInsets.all(40),
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          "Buy milk",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      Checkbox(
+                          value: false,
+                          onChanged: (bool value) {
+                            print(value);
+                          }),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          "Buy eggs",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      Checkbox(
+                          value: false,
+                          onChanged: (bool value) {
+                            print(value);
+                          }),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          "Buy detergent",
+                          style: TextStyle(
+                            fontSize: 20,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ),
+                      Checkbox(
+                          value: true,
+                          onChanged: (bool value) {
+                            print(value);
+                          }),
+                    ],
+                  )
+                ],
+              ),
             ),
           )
         ],
