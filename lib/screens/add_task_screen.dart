@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  final Function onAddButtonSubmit;
+  final TextEditingController textController;
+
+  AddTaskScreen(
+      {@required this.onAddButtonSubmit, @required this.textController});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,6 +23,7 @@ class AddTaskScreen extends StatelessWidget {
             ),
           ),
           TextField(
+            controller: textController,
             autofocus: true,
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -37,7 +44,11 @@ class AddTaskScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 15),
             color: Colors.lightBlueAccent,
             textColor: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              onAddButtonSubmit();
+              textController.clear();
+              Navigator.pop(context);
+            },
             child: Text(
               "Add",
               style: TextStyle(fontSize: 20),

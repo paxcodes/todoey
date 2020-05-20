@@ -2,8 +2,40 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoeyflutter/widgets/tasks_list.dart';
 import 'package:todoeyflutter/screens/add_task_screen.dart';
+import 'package:todoeyflutter/models/task.dart';
+import 'package:todoeyflutter/widgets/task_tile.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: "Buy milk"),
+    Task(name: "Buy eggs"),
+    Task(name: "Buy bread"),
+  ];
+
+  final textController = TextEditingController();
+
+  TaskTile _taskItemBuilder(context, index) => TaskTile(
+        tasks[index],
+        onChanged: (bool newValue) {
+          setState(() {
+            tasks[index].toggleDone();
+          });
+        },
+      );
+
+  void onAddButtonSubmit() {
+    String taskName = textController.text;
+    Task newTask = Task(name: taskName);
+    setState(() {
+      tasks.add(newTask);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +77,9 @@ class TasksScreen extends StatelessWidget {
               // https://api.flutter.dev/flutter/widgets/MediaQueryData/viewInsets.html
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTaskScreen(),
+              child: AddTaskScreen(
+                  onAddButtonSubmit: onAddButtonSubmit,
+                  textController: textController),
             ),
           );
         },
@@ -96,11 +130,17 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(tasks: tasks, taskBuilder: _taskItemBuilder),
             ),
           )
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
   }
 }
