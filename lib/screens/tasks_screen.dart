@@ -2,8 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoeyflutter/widgets/tasks_list.dart';
 import 'package:todoeyflutter/screens/add_task_screen.dart';
+import 'package:todoeyflutter/models/task.dart';
+import 'package:todoeyflutter/widgets/task_tile.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: "Buy milk"),
+    Task(name: "Buy eggs"),
+    Task(name: "Buy bread"),
+  ];
+
+  TaskTile _taskItemBuilder(context, index) => TaskTile(
+        tasks[index],
+        onChanged: (bool newValue) {
+          setState(() {
+            tasks[index].toggleDone();
+          });
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +118,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(tasks: tasks, taskBuilder: _taskItemBuilder),
             ),
           )
         ],
