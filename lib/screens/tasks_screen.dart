@@ -17,6 +17,8 @@ class _TasksScreenState extends State<TasksScreen> {
     Task(name: "Buy bread"),
   ];
 
+  final textController = TextEditingController();
+
   TaskTile _taskItemBuilder(context, index) => TaskTile(
         tasks[index],
         onChanged: (bool newValue) {
@@ -25,6 +27,14 @@ class _TasksScreenState extends State<TasksScreen> {
           });
         },
       );
+
+  void onAddButtonSubmit() {
+    String taskName = textController.text;
+    Task newTask = Task(name: taskName);
+    setState(() {
+      tasks.add(newTask);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +77,9 @@ class _TasksScreenState extends State<TasksScreen> {
               // https://api.flutter.dev/flutter/widgets/MediaQueryData/viewInsets.html
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTaskScreen(),
+              child: AddTaskScreen(
+                  onAddButtonSubmit: onAddButtonSubmit,
+                  textController: textController),
             ),
           );
         },
@@ -124,5 +136,11 @@ class _TasksScreenState extends State<TasksScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
   }
 }
