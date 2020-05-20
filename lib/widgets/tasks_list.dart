@@ -8,7 +8,7 @@ class TasksList extends StatelessWidget {
       children: <Widget>[
         TaskTile("Buy milk"),
         TaskTile("Buy detergent"),
-        TaskTile("Buy bananas", isCompleted: true),
+        TaskTile("Buy bananas"),
       ],
     );
   }
