@@ -6,16 +6,16 @@ import 'package:todoeyflutter/widgets/task_tile.dart';
 class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<Task> tasks = context.watch<ListOfTasks>().tasks;
-
-    return ListView.builder(
-      itemBuilder: (context, index) => TaskTile(
-        tasks[index],
-        onChanged: (bool newValue) {
-          context.read<ListOfTasks>().toggleDone(index);
-        },
+    return Consumer<ListOfTasks>(
+      builder: (context, listOfTasks, child) => ListView.builder(
+        itemBuilder: (context, index) => TaskTile(
+          listOfTasks.tasks[index],
+          onChanged: (bool newValue) {
+            listOfTasks.toggleDone(index);
+          },
+        ),
+        itemCount: listOfTasks.taskCount,
       ),
-      itemCount: tasks.length,
     );
   }
 }
