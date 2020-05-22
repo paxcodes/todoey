@@ -10,3 +10,13 @@ class Task {
     isDone = !isDone;
   }
 }
+
+class ListOfTasks extends ChangeNotifier {
+  List<Task> tasks;
+  ListOfTasks({this.tasks});
+
+  void toggleDone(int index) {
+    tasks[index].toggleDone();
+    notifyListeners();
+  }
+}

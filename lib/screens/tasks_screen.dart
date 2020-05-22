@@ -3,41 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:todoeyflutter/widgets/tasks_list.dart';
 import 'package:todoeyflutter/screens/add_task_screen.dart';
 import 'package:todoeyflutter/models/task.dart';
-import 'package:todoeyflutter/widgets/task_tile.dart';
+import 'package:provider/provider.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: "Buy milk"),
-    Task(name: "Buy eggs"),
-    Task(name: "Buy bread"),
-  ];
-
+class TasksScreen extends StatelessWidget {
   final textController = TextEditingController();
-
-  TaskTile _taskItemBuilder(context, index) => TaskTile(
-        tasks[index],
-        onChanged: (bool newValue) {
-          setState(() {
-            tasks[index].toggleDone();
-          });
-        },
-      );
 
   void onAddButtonSubmit() {
     String taskName = textController.text;
     Task newTask = Task(name: taskName);
-    setState(() {
-      tasks.add(newTask);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<Task> tasks = context.watch<ListOfTasks>().tasks;
+
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
@@ -130,17 +109,11 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(tasks: tasks, taskBuilder: _taskItemBuilder),
+              child: TasksList(),
             ),
           )
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
   }
 }
