@@ -15,7 +15,7 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Task> tasks = context.watch<ListOfTasks>().tasks;
+    final int taskCount = context.watch<ListOfTasks>().taskCount;
 
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
@@ -90,7 +90,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${tasks.length} Task${tasks.length == 1 ? "" : "s"}',
+                  '$taskCount Task${taskCount == 1 ? "" : "s"}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
