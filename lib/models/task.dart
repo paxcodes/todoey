@@ -11,9 +11,9 @@ class Task {
   }
 }
 
-class ListOfTasks extends ChangeNotifier {
+class TaskData extends ChangeNotifier {
   List<Task> tasks;
-  ListOfTasks({this.tasks});
+  TaskData({this.tasks});
 
   int get taskCount => tasks.length;
 

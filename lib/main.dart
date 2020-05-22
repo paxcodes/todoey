@@ -8,8 +8,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ListOfTasks>(
-      create: (context) => ListOfTasks(tasks: [
+    return ChangeNotifierProvider<TaskData>(
+      create: (context) => TaskData(tasks: [
         Task(name: "Buy milk"),
         Task(name: "Buy eggs"),
         Task(name: "Buy bread"),

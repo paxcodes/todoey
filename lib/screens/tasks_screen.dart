@@ -15,7 +15,7 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int taskCount = context.watch<ListOfTasks>().taskCount;
+    final int taskCount = context.watch<TaskData>().taskCount;
 
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,

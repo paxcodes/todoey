@@ -6,7 +6,7 @@ import 'package:todoeyflutter/widgets/task_tile.dart';
 class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ListOfTasks>(
+    return Consumer<TaskData>(
       builder: (context, listOfTasks, child) => ListView.builder(
         itemBuilder: (context, index) => TaskTile(
           listOfTasks.tasks[index],
